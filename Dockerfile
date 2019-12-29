@@ -19,5 +19,6 @@ RUN set -x \
     -installsuffix cgo \
     -o bin/etcdctl ./etcdctl
 
-FROM busybox:latest
+FROM scratch
+
 COPY --from=BUILD /go/src/github.com/etcd-io/etcd/bin/ /usr/local/bin/
