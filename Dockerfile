@@ -13,9 +13,11 @@ RUN set -x \
   && cd etcd \
   && mkdir bin \
   && GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -v \
+    -ldflags '-w -s' \
     -installsuffix cgo \
     -o bin/etcd . \
   && GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -v \
+    -ldflags '-w -s' \
     -installsuffix cgo \
     -o bin/etcdctl ./etcdctl
 
