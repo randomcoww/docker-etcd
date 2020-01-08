@@ -7,19 +7,13 @@ RUN set -x \
   \
   && apk add --no-cache \
     git \
+    make \
+    bash \
   \
   && git clone -b $ETCD_VERSION \
     https://github.com/etcd-io/etcd.git \
   && cd etcd \
-  && mkdir bin \
-  && GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -v \
-    -ldflags '-w -s' \
-    -installsuffix cgo \
-    -o bin/etcd . \
-  && GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -v \
-    -ldflags '-w -s' \
-    -installsuffix cgo \
-    -o bin/etcdctl ./etcdctl
+  && GO_LDFLAGS='-s -w' make build
 
 FROM scratch
 
