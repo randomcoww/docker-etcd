@@ -1,7 +1,7 @@
 FROM golang:1.13.3-alpine as BUILD
 
 WORKDIR /go/src/github.com/etcd-io
-ENV ETCD_VERSION v3.4.3
+ENV ETCD_VERSION v3.4.7
 
 RUN set -x \
   \
