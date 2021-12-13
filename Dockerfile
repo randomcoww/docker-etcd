@@ -1,8 +1,8 @@
-ARG GO_VERSION=1.14.3
+ARG GO_VERSION
 FROM golang:${GO_VERSION}-alpine as BUILD
+ARG VERSION
 
 WORKDIR /go/src/github.com/etcd-io
-ARG ETCD_VERSION=v3.4.13
 
 RUN set -x \
   \
@@ -11,7 +11,7 @@ RUN set -x \
     make \
     bash \
   \
-  && git clone -b $ETCD_VERSION \
+  && git clone -b $VERSION \
     https://github.com/etcd-io/etcd.git \
   && cd etcd \
   && go mod vendor \
